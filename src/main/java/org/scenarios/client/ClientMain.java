@@ -22,19 +22,24 @@ public class ClientMain {
     public void runHTTPClientsWithPayload(String host, int port, String payload, RequestMethods method) {
 
 //        System.out.println("Run ClientSendContentLessThanContentLength");
-//        ClientSendContentLessThanContentLength clientSendContentLessThanContentLength = new ClientSendContentLessThanContentLength(host, port, Bearer);
-//        clientSendContentLessThanContentLength.run(payload, method);
+//        NonBlockingClientSendContentLessThanContentLength nonBlockingClientSendContentLessThanContentLength = new NonBlockingClientSendContentLessThanContentLength(host, port, Bearer);
+//        nonBlockingClientSendContentLessThanContentLength.run(payload, method);
 //        System.out.println("Stop ClientSendContentLessThanContentLength");
 //
+//        System.out.println("Run ClientSendContentLessThanContentLength");
+//        BlockingClientSendContentLessThanContentLength blockingClientSendContentLessThanContentLength = new BlockingClientSendContentLessThanContentLength(host, port, Bearer);
+//        blockingClientSendContentLessThanContentLength.run(payload, method);
+//        System.out.println("Stop ClientSendContentLessThanContentLength");
+////
 //        System.out.println("Run SimpleBlockingClient");
 //        SimpleBlockingClient simpleBlockingClient = new SimpleBlockingClient(host, port, Bearer);
 //        simpleBlockingClient.run(payload, method);
 //        System.out.println("Stop SimpleBlockingClient");
 
-        System.out.println("Run SimpleNonBlockingClient");
-        SimpleNonBlockingClient simpleNonBlockingClient = new SimpleNonBlockingClient(host, port, Bearer);
-        simpleNonBlockingClient.run(payload, method);
-        System.out.println("Stop SimpleNonBlockingClient");
+//        System.out.println("Run SimpleNonBlockingClient");
+//        SimpleNonBlockingClient simpleNonBlockingClient = new SimpleNonBlockingClient(host, port, Bearer);
+//        simpleNonBlockingClient.run(payload, method);
+//        System.out.println("Stop SimpleNonBlockingClient");
 
     }
     public static String readFile(String fileLocation) throws IOException {
