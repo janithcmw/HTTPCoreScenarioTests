@@ -9,7 +9,6 @@ public class NonBlockingClientSendContentLessThanContentLength {
     private static String Bearer;
     private final String host;
     private final int port;
-    public static final String CRLF = "\r\n";
 
     public NonBlockingClientSendContentLessThanContentLength(String host, int port, String Bearer) {
         this.Bearer = Bearer;
@@ -37,8 +36,8 @@ public class NonBlockingClientSendContentLessThanContentLength {
     }
     static class ClientThread extends Thread {
 
-            private SSLSocket sslSocket;
-            private String payload;
+            private final SSLSocket sslSocket;
+            private final String payload;
             RequestMethods method;
 
             ClientThread(SSLSocket sslSocket, String payload, RequestMethods method) {
@@ -87,7 +86,7 @@ public class NonBlockingClientSendContentLessThanContentLength {
             }
 
         private class ResponseReader implements Runnable {
-            private SSLSocket sslSocket;
+            private final SSLSocket sslSocket;
             public ResponseReader(SSLSocket sslSocket) {
                 this.sslSocket = sslSocket;
             }
