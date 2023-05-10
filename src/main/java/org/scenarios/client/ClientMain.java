@@ -2,7 +2,6 @@ package org.scenarios.client;
 
 import org.scenarios.client.helpers.RequestMethods;
 import org.scenarios.client.helpers.TestPayloads;
-import org.scenarios.server.ServerMain;
 
 public class ClientMain {
 
@@ -23,7 +22,7 @@ public class ClientMain {
     public void runHTTPClientsWithPayload(String host, int port, String payload, RequestMethods method) {
 
         System.out.println("Run ClientSendContentLessThanContentLength");
-        ClientSendContentLessThanContentLength client1 = new ClientSendContentLessThanContentLength(host, port, Bearer);
+        ClientSendContentLessThanContentLength client1 = new ClientSendContentLessThanContentLength(host, port);
         client1.run(payload, method);
         System.out.println("Stop ClientSendContentLessThanContentLength");
 

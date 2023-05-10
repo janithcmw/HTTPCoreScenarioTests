@@ -7,8 +7,8 @@ import java.security.KeyStore;
 
 public class ClientSendContentLessThanContentLength {
     private static String Bearer;
-    private String host;
-    private int port;
+    private final String host;
+    private final int port;
     public static final String CRLF = "\r\n";
 
     public ClientSendContentLessThanContentLength(String host, int port, String Bearer) {
@@ -26,7 +26,7 @@ public class ClientSendContentLessThanContentLength {
                 SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
                 // Create socket
                 SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(this.host, this.port);
-                System.out.println("Client " + this.getClass().getName().toString() + " started");
+                System.out.println("Client " + this.getClass().getName() + " started");
                 new ClientSendContentLessThanContentLength.ClientThread(sslSocket, payload, method).start();
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -37,7 +37,7 @@ public class ClientSendContentLessThanContentLength {
     }
     static class ClientThread extends Thread {
 
-        private SSLSocket sslSocket = null;
+            private SSLSocket sslSocket;
             private String payload;
             RequestMethods method;
 
@@ -87,20 +87,18 @@ public class ClientSendContentLessThanContentLength {
             }
 
         private class ResponseReader implements Runnable {
+            private SSLSocket sslSocket;
             public ResponseReader(SSLSocket sslSocket) {
-
+                this.sslSocket = sslSocket;
             }
             @Override
             public void run() {
                 try {
                     InputStream inputStream = sslSocket.getInputStream();
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-                    String line = null;
-                    int i = 0;
+                    String line;
                     while((line = bufferedReader.readLine()) != null){
                         System.out.println("Response : "+line);
-                        i++;
                     }
 
                 } catch (IOException e) {
