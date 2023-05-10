@@ -22,7 +22,7 @@ public class ClientMain {
     public void runHTTPClientsWithPayload(String host, int port, String payload, RequestMethods method) {
 
         System.out.println("Run ClientSendContentLessThanContentLength");
-        ClientSendContentLessThanContentLength client1 = new ClientSendContentLessThanContentLength(host, port);
+        ClientSendContentLessThanContentLength client1 = new ClientSendContentLessThanContentLength(host, port, Bearer);
         client1.run(payload, method);
         System.out.println("Stop ClientSendContentLessThanContentLength");
 
