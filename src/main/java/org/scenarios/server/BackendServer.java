@@ -10,6 +10,7 @@ public class BackendServer {
     protected ServerSocket ss;
     public static final String CRLF = "\r\n";
     public BackendServer() {
+        System.out.println("initiating "+ this.getClass().getSimpleName() +" server ");
     }
 
     public void run(int port, String content) throws Exception {}
