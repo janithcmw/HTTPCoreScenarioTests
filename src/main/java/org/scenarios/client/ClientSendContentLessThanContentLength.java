@@ -80,24 +80,19 @@ public class ClientSendContentLessThanContentLength {
                     printWriter.print("Content-Type: application/json\r\n");
                     printWriter.print("content-length: 1048576\r\n");
                     printWriter.print("\r\n");
-                    printWriter.print(payload + "\r\n");
-                    printWriter.print("\r\n");
-
+                    printWriter.print(payload);
+                    // Remove the eol
+                    //printWriter.print("\r\n");
                     printWriter.flush();
                     Thread.sleep(650000);
+                    printWriter.print("\r\n");
 
                     String line = null;
                     int i = 0;
                     while((line = bufferedReader.readLine()) != null){
                         System.out.println("Inut : "+line);
-                        System.exit(-1);
-                        if(i==11){
-                            System.exit(-1);
-                            sslSocket.close();
-                        }
                         i++;
                     }
-
                     sslSocket.close();
                 } catch (Exception ex) {
                     ex.printStackTrace();
