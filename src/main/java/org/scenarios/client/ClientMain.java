@@ -21,11 +21,11 @@ public class ClientMain {
     }
     public void runHTTPClientsWithPayload(String host, int port, String payload, RequestMethods method) {
 
-//        System.out.println("Run ClientSendContentLessThanContentLength");
-//        NonBlockingClientSendContentLessThanContentLength nonBlockingClientSendContentLessThanContentLength = new NonBlockingClientSendContentLessThanContentLength(host, port, Bearer);
-//        nonBlockingClientSendContentLessThanContentLength.run(payload, method);
-//        System.out.println("Stop ClientSendContentLessThanContentLength");
-//
+        System.out.println("Run ClientSendContentLessThanContentLength");
+        NonBlockingClientSendContentLessThanContentLength nonBlockingClientSendContentLessThanContentLength = new NonBlockingClientSendContentLessThanContentLength(host, port, Bearer);
+        nonBlockingClientSendContentLessThanContentLength.run(payload, method);
+        System.out.println("Stop ClientSendContentLessThanContentLength");
+
 //        System.out.println("Run ClientSendContentLessThanContentLength");
 //        BlockingClientSendContentLessThanContentLength blockingClientSendContentLessThanContentLength = new BlockingClientSendContentLessThanContentLength(host, port, Bearer);
 //        blockingClientSendContentLessThanContentLength.run(payload, method);
