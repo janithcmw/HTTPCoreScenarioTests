@@ -15,12 +15,40 @@ public class ServerMain {
 
         String content = readFile("<path to 1MB.json >");
 
-        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate200 backend");
+        /*System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate200 backend");
         SSLServerSendImediate200 sslServerSendImediate200 = new SSLServerSendImediate200();
         sslServerSendImediate200.run(backendServerPort, content);
         Thread.sleep(2000000);
         sslServerSendImediate200.shutdownServer();
-        System.out.println(" <<<<<<<<<<<<<<<<<<<<<<<<<<< End sslServerSendImediate200 backend");
+        System.out.println(" <<<<<<<<<<<<<<<<<<<<<<<<<<< End sslServerSendImediate200 backend");*/
+
+        /*System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate200 backend");
+        SSLServerSendImediate200 sslServerSendImediate200 = new SSLServerSendImediate200();
+        sslServerSendImediate200.run(backendServerPort, content);
+        Thread.sleep(2000000);
+        sslServerSendImediate200.shutdownServer();
+        System.out.println(" <<<<<<<<<<<<<<<<<<<<<<<<<<< End sslServerSendImediate200 backend");*/
+
+        /*System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate400 backend");
+        SSLServerSendImediate400 sslServerSendImediate400 = new SSLServerSendImediate400();
+        sslServerSendImediate400.run(backendServerPort, content);
+        Thread.sleep(2000000);
+        sslServerSendImediate400.shutdownServer();
+        System.out.println(" <<<<<<<<<<<<<<<<<<<<<<<<<<< End sslServerSendImediate400 backend");*/
+
+        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate503 backend");
+        SSLServerSendImediate503 sslServerSendImediate503 = new SSLServerSendImediate503();
+        sslServerSendImediate503.run(backendServerPort, content);
+        Thread.sleep(2000000);
+        sslServerSendImediate503.shutdownServer();
+        System.out.println(" <<<<<<<<<<<<<<<<<<<<<<<<<<< End sslServerSendImediate503 backend");
+
+    /*    System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate300 backend");
+        SSLServerSendImediate300 sslServerSendImediate300 = new SSLServerSendImediate300();
+        sslServerSendImediate300.run(backendServerPort, content);
+        Thread.sleep(2000000);
+        sslServerSendImediate300.shutdownServer();
+        System.out.println(" <<<<<<<<<<<<<<<<<<<<<<<<<<< End sslServerSendImediate300 backend");*/
 
     }
     public static String readFile(String fileLocation) throws IOException {
