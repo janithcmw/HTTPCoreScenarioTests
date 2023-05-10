@@ -16,7 +16,7 @@ public class ClientMain {
 
         ClientMain main = new ClientMain();
 
-        main.runHTTPClientsWithPayload("localhost", serverPort, TestPayloads.SMALL_PAYLOAD, RequestMethods.GET);
+        main.runHTTPClientsWithPayload("localhost", serverPort, TestPayloads.SMALL_PAYLOAD, RequestMethods.POST);
     }
 
     public void runHTTPClientsWithPayload(String host, int port, String payload, RequestMethods method) {
