@@ -38,6 +38,7 @@ public class SSLServerSendImediate200 extends BackendServer {
                 out.print("Connection: Close\r\n");
                 out.print("\r\n");
                 out.print(content + "\r\n");
+                System.out.println(" Sending server response ....");
                 out.flush();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 String line;
