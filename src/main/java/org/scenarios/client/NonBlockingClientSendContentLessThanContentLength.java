@@ -27,7 +27,7 @@ public class NonBlockingClientSendContentLessThanContentLength {
                 // Create socket
                 SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(this.host, this.port);
                 System.out.println("Client " + this.getClass().getName() + " started");
-                new ClientSendContentLessThanContentLength.ClientThread(sslSocket, payload, method).start();
+                new NonBlockingClientSendContentLessThanContentLength.ClientThread(sslSocket, payload, method).start();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
