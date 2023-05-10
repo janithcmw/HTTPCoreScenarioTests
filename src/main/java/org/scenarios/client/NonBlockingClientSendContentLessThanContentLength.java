@@ -5,13 +5,13 @@ import javax.net.ssl.*;
 import java.io.*;
 import java.security.KeyStore;
 
-public class ClientSendContentLessThanContentLength {
+public class NonBlockingClientSendContentLessThanContentLength {
     private static String Bearer;
     private final String host;
     private final int port;
     public static final String CRLF = "\r\n";
 
-    public ClientSendContentLessThanContentLength(String host, int port, String Bearer) {
+    public NonBlockingClientSendContentLessThanContentLength(String host, int port, String Bearer) {
         this.Bearer = Bearer;
         this.host = host;
         this.port = port;
