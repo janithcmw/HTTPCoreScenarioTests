@@ -12,15 +12,15 @@ public class SSLServerSendImediate200 extends BackendServer {
     public void run(int port, String content) throws Exception {
         try {
             // Create a ServerSocket to listen on that port.
+            System.setProperty("javax.net.ssl.keyStore",ServerkeyStoreLocation);
+            System.setProperty("javax.net.ssl.keyStorePassword", ServerkeyStorePassword);
             ServerSocketFactory ssf = SSLServerSocketFactory.getDefault();
             ss = ssf.createServerSocket(port);
-            System.out.println("SSL Echo Server Started!");
+            System.out.println("SSL Server Started!");
 
             do {
                 Socket client = ss.accept();
                 BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-
-                System.out.println("out of loop");
                 PrintWriter out = new PrintWriter(client.getOutputStream());
 
                 // Start sending our reply, using the HTTP 1.1 protocol
@@ -35,7 +35,6 @@ public class SSLServerSendImediate200 extends BackendServer {
                 out.print("Content-Type: application/json\r\n");
                 out.print("Date: Tue, 14 Dec 2021 08:15:17 GMT\r\n");
                 out.print("Content-Length:  " + content.getBytes().length + "\r\n");
-                ; // The type of data
                 out.print("Connection: Close\r\n");
                 out.print("\r\n");
                 out.print(content + "\r\n");

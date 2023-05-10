@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 
 public class BackendServer {
 
+    public static String ServerkeyStoreLocation = "<keystore location>";
+    public static String ServerkeyStorePassword = "<keystore password>";
     protected ServerSocket ss;
     public static final String CRLF = "\r\n";
     public BackendServer() {

@@ -11,11 +11,6 @@ public class ServerMain {
     public static void main(String[] args) throws Exception {
         System.out.println("Starting the Test Server main!");
 
-        System.setProperty("javax.net.ssl.keyStore", "<keystore location>");
-        System.setProperty("javax.net.ssl.keyStorePassword", "<keystore password>");
-
-        ServerMain main = new ServerMain();
-
         String content = TestPayloads.LARGE_PAYLOAD_1MB;
 
         System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate200 backend");
