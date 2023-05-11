@@ -17,9 +17,9 @@ public class ClientMain {
         System.out.println("Starting the Test Client main!");
         ClientMain main = new ClientMain();
         String content = readFile(" < Path to 1MB.json >");
-        main.runHTTPClientsWithPayload("localhost", serverPort,content , RequestMethods.POST);
+        runHTTPClientsWithSingleRequestPayload("localhost", serverPort,content , RequestMethods.POST);
     }
-    public void runHTTPClientsWithPayload(String host, int port, String payload, RequestMethods method) {
+    public static void runHTTPClientsWithSingleRequestPayload(String host, int port, String payload, RequestMethods method) {
 
         System.out.println("Run NonBlockingClientSendContentLessThanContentLength");
         NonBlockingClientSendContentLessThanContentLength nonBlockingClientSendContentLessThanContentLength = new NonBlockingClientSendContentLessThanContentLength(host, port, Bearer);
