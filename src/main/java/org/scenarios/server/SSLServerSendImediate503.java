@@ -40,11 +40,6 @@ public class SSLServerSendImediate503 extends BackendServer{
                 out.print(content + "\r\n");
                 System.out.println(" Sending server response ....");
                 out.flush();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                String line;
-                while((line = bufferedReader.readLine()) != null){
-                    System.out.println("Request : "+line);
-                }
                 out.close();
                 client.close();
             } while (true);
