@@ -17,15 +17,15 @@ public class ClientMain {
         System.out.println("Starting the Test Client main!");
         ClientMain main = new ClientMain();
         String content = readFile(" < Path to 1MB.json >");
-        runHTTPClientsWithSingleRequestPayload("localhost", serverPort,content , RequestMethods.POST);
-        runHTTPClientsWithConcurrentRequestPayload("localhost", serverPort,content , RequestMethods.POST);
+        main.runHTTPClientsWithSingleRequestPayload("localhost", serverPort,content , RequestMethods.POST);
+        main.runHTTPClientsWithConcurrentRequestPayload("localhost", serverPort, content , RequestMethods.POST);
     }
-    public static void runHTTPClientsWithSingleRequestPayload(String host, int port, String payload, RequestMethods method) {
+    private void runHTTPClientsWithSingleRequestPayload(String host, int port, String payload, RequestMethods method) {
 
-        System.out.println("Run NonBlockingClientSendContentLessThanContentLength");
-        NonBlockingClientSendContentLessThanContentLength nonBlockingClientSendContentLessThanContentLength = new NonBlockingClientSendContentLessThanContentLength(host, port, Bearer);
-        nonBlockingClientSendContentLessThanContentLength.run(payload, method);
-        System.out.println("Stop NonBlockingClientSendContentLessThanContentLength");
+//        System.out.println("Run NonBlockingClientSendContentLessThanContentLength");
+//        NonBlockingClientSendContentLessThanContentLength nonBlockingClientSendContentLessThanContentLength = new NonBlockingClientSendContentLessThanContentLength(host, port, Bearer);
+//        nonBlockingClientSendContentLessThanContentLength.run(payload, method);
+//        System.out.println("Stop NonBlockingClientSendContentLessThanContentLength");
 
 //        System.out.println("Run BlockingClientSendContentLessThanContentLength");
 //        BlockingClientSendContentLessThanContentLength blockingClientSendContentLessThanContentLength = new BlockingClientSendContentLessThanContentLength(host, port, Bearer);
@@ -43,8 +43,31 @@ public class ClientMain {
 //        System.out.println("Stop SimpleNonBlockingClient");
 
     }
-    private static void runHTTPClientsWithConcurrentRequestPayload(String localhost, int serverPort, String content, RequestMethods requestMethods) {
+    private void runHTTPClientsWithConcurrentRequestPayload(String host, int port, String payload, RequestMethods method) {
 
+        int concurrentClientscount = 100;
+        for (int client=1;client<=concurrentClientscount;client++){
+
+//            System.out.println("Run NonBlockingClientSendContentLessThanContentLength");
+//            NonBlockingClientSendContentLessThanContentLength nonBlockingClientSendContentLessThanContentLength = new NonBlockingClientSendContentLessThanContentLength(host, port, Bearer);
+//            nonBlockingClientSendContentLessThanContentLength.run(payload, method);
+//            System.out.println("Stop NonBlockingClientSendContentLessThanContentLength");
+//
+//            System.out.println("Run BlockingClientSendContentLessThanContentLength");
+//            BlockingClientSendContentLessThanContentLength blockingClientSendContentLessThanContentLength = new BlockingClientSendContentLessThanContentLength(host, port, Bearer);
+//            blockingClientSendContentLessThanContentLength.run(payload, method);
+//            System.out.println("Stop BlockingClientSendContentLessThanContentLength");
+//
+//            System.out.println("Run SimpleBlockingClient");
+//            SimpleBlockingClient simpleBlockingClient = new SimpleBlockingClient(host, port, Bearer);
+//            simpleBlockingClient.run(payload, method);
+//            System.out.println("Stop SimpleBlockingClient");
+//
+//            System.out.println("Run SimpleNonBlockingClient");
+//            SimpleNonBlockingClient simpleNonBlockingClient = new SimpleNonBlockingClient(host, port, Bearer);
+//            simpleNonBlockingClient.run(payload, method);
+//            System.out.println("Stop SimpleNonBlockingClient");
+        }
     }
     public static String readFile(String fileLocation) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileLocation));
