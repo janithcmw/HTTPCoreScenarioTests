@@ -20,6 +20,7 @@ public class SSLServerSendImediate300 extends BackendServer{
 
             do {
                 Socket client = ss.accept();
+                System.out.println(" Accepting the client connection ...");
                 BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 PrintWriter out = new PrintWriter(client.getOutputStream());
 
@@ -38,8 +39,9 @@ public class SSLServerSendImediate300 extends BackendServer{
                 out.print("Connection: Close\r\n");
                 out.print("\r\n");
                 out.print(content + "\r\n");
-                System.out.println(" Sending server response ....");
+                System.out.println(" Sending immediate response ( size:"+ content.getBytes().length +") without reading the request");
                 out.flush();
+                System.out.println(" Closing server connection ....");
                 out.close();
                 client.close();
             } while (true);
