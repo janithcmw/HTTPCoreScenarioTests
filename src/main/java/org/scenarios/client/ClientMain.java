@@ -18,6 +18,7 @@ public class ClientMain {
         ClientMain main = new ClientMain();
         String content = readFile(" < Path to 1MB.json >");
         runHTTPClientsWithSingleRequestPayload("localhost", serverPort,content , RequestMethods.POST);
+        runHTTPClientsWithConcurrentRequestPayload("localhost", serverPort,content , RequestMethods.POST);
     }
     public static void runHTTPClientsWithSingleRequestPayload(String host, int port, String payload, RequestMethods method) {
 
@@ -40,6 +41,9 @@ public class ClientMain {
 //        SimpleNonBlockingClient simpleNonBlockingClient = new SimpleNonBlockingClient(host, port, Bearer);
 //        simpleNonBlockingClient.run(payload, method);
 //        System.out.println("Stop SimpleNonBlockingClient");
+
+    }
+    private static void runHTTPClientsWithConcurrentRequestPayload(String localhost, int serverPort, String content, RequestMethods requestMethods) {
 
     }
     public static String readFile(String fileLocation) throws IOException {
