@@ -57,33 +57,30 @@ public class SimpleBlockingClient {
                 System.out.println("SSLSession :");
                 System.out.println("\tProtocol : " + sslSession.getProtocol());
                 System.out.println("\tCipher suite : " + sslSession.getCipherSuite());
+                System.out.println("Connection established with the backend");
                 // Start handling application content
                 OutputStream outputStream = sslSocket.getOutputStream();
                 InputStream inputStream = sslSocket.getInputStream();
-
                 PrintStream printWriter = new PrintStream(outputStream);
-
                 // Write Headers
                 printWriter.print(method + " /test/1 HTTP/1.1\r\n ");
                 printWriter.print("Accept: application/json\r\n");
                 printWriter.print("Connection: keep-alive\r\n");
                 printWriter.print("Authorization: Bearer " + Bearer + "\r\n");
                 printWriter.print("Content-Type: application/json\r\n");
-                printWriter.print("content-length: 1048576\r\n");
-
-
+                printWriter.print("Content-Length: " + payload.getBytes().length + "\r\n");
                 printWriter.print("\r\n");
                 // Write Payload
                 printWriter.print(payload);
                 printWriter.print("\r\n");
                 printWriter.flush();
-
+                System.out.println("Reading the response ...");
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     System.out.println("Response : " + line);
                 }
-
+                // Closing the socket after reading the response
                 sslSocket.close();
             } catch (Exception ex) {
                 ex.printStackTrace();

@@ -57,6 +57,7 @@ public class SimpleNonBlockingClient {
                     System.out.println("SSLSession :");
                     System.out.println("\tProtocol : " + sslSession.getProtocol());
                     System.out.println("\tCipher suite : " + sslSession.getCipherSuite());
+                    System.out.println("Connection established with the backend");
                     // Start handling application content
                     OutputStream outputStream = sslSocket.getOutputStream();
                     // Create a thread to read the response
@@ -71,7 +72,7 @@ public class SimpleNonBlockingClient {
                     printWriter.print("Connection: keep-alive\r\n");
                     printWriter.print("Authorization: Bearer "+ Bearer +"\r\n");
                     printWriter.print("Content-Type: application/json\r\n");
-                    printWriter.print("content-length: 1048576\r\n");
+                    printWriter.print("Content-Length: " + payload.getBytes().length + "\r\n");
                     printWriter.print("\r\n");
                     // Write payload data
                     printWriter.print(payload);
@@ -91,6 +92,7 @@ public class SimpleNonBlockingClient {
             @Override
             public void run() {
                 try {
+                    System.out.println("Reading the response ...");
                     InputStream inputStream = sslSocket.getInputStream();
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                     String line;

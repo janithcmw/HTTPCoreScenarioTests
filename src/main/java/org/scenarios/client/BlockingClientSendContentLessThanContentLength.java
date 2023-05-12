@@ -57,6 +57,7 @@ public class BlockingClientSendContentLessThanContentLength {
                 System.out.println("SSLSession :");
                 System.out.println("\tProtocol : " + sslSession.getProtocol());
                 System.out.println("\tCipher suite : " + sslSession.getCipherSuite());
+                System.out.println("Connection established with the backend");
                 // Start handling application content
                 OutputStream outputStream = sslSocket.getOutputStream();
                 InputStream inputStream = sslSocket.getInputStream();
@@ -70,10 +71,13 @@ public class BlockingClientSendContentLessThanContentLength {
                 printWriter.print("Connection: keep-alive\r\n");
                 printWriter.print("Authorization: Bearer " + Bearer + "\r\n");
                 printWriter.print("Content-Type: application/json\r\n");
-                printWriter.print("content-length: 1048576\r\n");
+                int contentLength = payload.getBytes().length;
+                System.out.printf("Actual Content-Length is: "+ contentLength +"but sending large Content-Length: " + contentLength + 100);
+                // Sending large Content-Length to make the client sending partial content
+                printWriter.print("Content-Length: "+contentLength + 100+"\r\n");
                 printWriter.print("\r\n");
                 printWriter.print(payload);
-                // Remove the eol
+                // Remove the eol to make the client sending partial content
                 //printWriter.print("\r\n");
                 printWriter.flush();
                 Thread.sleep(650000);
