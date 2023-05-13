@@ -78,7 +78,8 @@ public class SimpleNonBlockingClient {
                     printWriter.print(payload);
                     printWriter.print("\r\n");
                     printWriter.flush();
-                    sslSocket.close();
+                    printWriter.close();
+                    // closing the socket after reading the response
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -99,7 +100,7 @@ public class SimpleNonBlockingClient {
                     while((line = bufferedReader.readLine()) != null){
                         System.out.println("Response : "+line);
                     }
-
+                    sslSocket.close();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
