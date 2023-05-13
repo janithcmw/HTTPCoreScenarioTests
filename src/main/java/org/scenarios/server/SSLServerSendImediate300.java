@@ -25,7 +25,7 @@ public class SSLServerSendImediate300 extends BackendServer{
                 PrintWriter out = new PrintWriter(client.getOutputStream());
 
                 // Start sending our reply, using the HTTP 1.1 protocol
-                //out.print(0 + "\r\n");
+                System.out.println(" Sending immediate response ( size:"+ content.getBytes().length +") without reading the request");
                 out.print("HTTP/1.1 300 Multiple Choices\r\n"); // Version & status code
                 out.print("Location: http://example.com/alternate-resource");
                 out.print("Access-Control-Expose-Headers:\r\n");
@@ -40,7 +40,6 @@ public class SSLServerSendImediate300 extends BackendServer{
                 out.print("Connection: Close\r\n");
                 out.print("\r\n");
                 out.print(content + "\r\n");
-                System.out.println(" Sending immediate response ( size:"+ content.getBytes().length +") without reading the request");
                 out.flush();
                 System.out.println(" Closing server connection ....");
                 out.close();

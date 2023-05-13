@@ -25,7 +25,7 @@ public class SSLServerSendImediate503 extends BackendServer{
                 PrintWriter out = new PrintWriter(client.getOutputStream());
 
                 // Start sending our reply, using the HTTP 1.1 protocol
-                //out.print(0 + "\r\n");
+                System.out.println(" Sending immediate response ( size:"+ content.getBytes().length +") without reading the request");
                 out.print("HTTP/1.1 503 Service Unavailable\r\n"); // Version & status code
                 out.print("Access-Control-Expose-Headers:\r\n");
                 out.print("Access-Control-Allow-Origin: *\r\n");
@@ -39,7 +39,6 @@ public class SSLServerSendImediate503 extends BackendServer{
                 out.print("Connection: Close\r\n");
                 out.print("\r\n");
                 out.print(content + "\r\n");
-                System.out.println(" Sending immediate response ( size:"+ content.getBytes().length +") without reading the request");
                 out.flush();
                 System.out.println(" Closing server connection ....");
                 out.close();

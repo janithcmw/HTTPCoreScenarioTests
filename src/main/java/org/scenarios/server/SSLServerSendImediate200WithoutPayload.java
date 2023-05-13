@@ -23,8 +23,9 @@ public class SSLServerSendImediate200WithoutPayload extends BackendServer {
                 System.out.println(" Accepting the client connection ...");
                 BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 PrintWriter out = new PrintWriter(client.getOutputStream());
+
                 // Start sending our reply, using the HTTP 1.1 protocol
-                System.out.println(" Sending immediate response without reading the request");
+                System.out.println(" Sending immediate response without message body without reading the request");
                 out.print("HTTP/1.1 200 OK\r\n"); // Version & status code
                 out.print("Access-Control-Expose-Headers:\r\n");
                 out.print("Access-Control-Allow-Origin: *\r\n");
