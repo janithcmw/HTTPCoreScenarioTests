@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class SSLServerSendImediate300 extends BackendServer{
+public class SSLServerSendImediate300WithoutPayload extends BackendServer{
 
     public void run(int port, String content) throws Exception {
         try {
@@ -31,16 +31,8 @@ public class SSLServerSendImediate300 extends BackendServer{
                 out.print("Access-Control-Expose-Headers:\r\n");
                 out.print("Access-Control-Allow-Origin: *\r\n");
                 out.print("X-Correlation-ID: 9f22c69b-6673-4326-8aff-0c0c097cd3c0\r\n");
-                out.print(
-                        "Access-Control-Allow-Headers: authorization,Access-Control-Allow-Origin,Content-Type," +
-                                "SOAPAction,apikey,testKey,Authorization\r\n");
-                out.print("Content-Type: application/json\r\n");
-                out.print("Date: Tue, 14 Dec 2021 08:15:17 GMT\r\n");
-                out.print("Content-Length:  " + content.getBytes().length + "\r\n");
                 out.print("Connection: Close\r\n");
                 out.print("\r\n");
-                out.print(content + "\r\n");
-                System.out.println(" Sending immediate response ( size:"+ content.getBytes().length +") without reading the request");
                 out.flush();
                 System.out.println(" Closing server connection ....");
                 out.close();
