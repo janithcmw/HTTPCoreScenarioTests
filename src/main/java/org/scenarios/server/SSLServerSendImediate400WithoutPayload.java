@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class SSLServerSendImediate400WithoutPayload extends BackendServer{
+public class SSLServerSendImediate400WithoutPayload extends AbstractSSLServer {
 
     public void run(int port, String content) throws Exception {
         try {

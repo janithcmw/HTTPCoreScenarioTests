@@ -3,13 +3,13 @@ package org.scenarios.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class BackendServer {
+public class AbstractSSLServer {
 
     public static String ServerkeyStoreLocation = "<keystore location>";
     public static String ServerkeyStorePassword = "<keystore password>";
     protected ServerSocket ss;
     public static final String CRLF = "\r\n";
-    public BackendServer() {
+    public AbstractSSLServer() {
         System.out.println("initiating "+ this.getClass().getSimpleName() +" server ");
     }
 
