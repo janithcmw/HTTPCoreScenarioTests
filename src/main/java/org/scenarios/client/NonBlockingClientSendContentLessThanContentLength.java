@@ -51,7 +51,7 @@ public class NonBlockingClientSendContentLessThanContentLength extends AbstractS
                     printWriter.print("Authorization: Bearer "+ Bearer +"\r\n");
                     int contentLength = payload.getBytes().length;
                     // There is no possible partial client scenario with GET method or zero payload size.
-                    if(contentLength==0 | method == RequestMethods.GET){
+                    if(contentLength == 0 | method == RequestMethods.GET){
                         System.out.println("Actual Content-Length: is: "+ contentLength +" but "+ method +" method so not sending Content-Length header");
                         printWriter.print("\r\n");
                         printWriter.flush();
