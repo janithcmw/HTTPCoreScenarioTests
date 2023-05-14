@@ -3,9 +3,9 @@ package org.scenarios.client;
 import org.scenarios.client.helpers.RequestMethods;
 import javax.net.ssl.*;
 import java.io.*;
-import java.security.KeyStore;
+import java.net.SocketException;
 
-public class NonBlockingClientSendContentLessThanContentLength {
+public class NonBlockingClientSendContentLessThanContentLength extends AbstractSSLClient {
     private static String Bearer;
     private final String host;
     private final int port;
@@ -26,27 +26,6 @@ public class NonBlockingClientSendContentLessThanContentLength {
                 // Create socket
                 SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(this.host, this.port);
                 System.out.println("Client " + this.getClass().getName() + " started");
-                new NonBlockingClientSendContentLessThanContentLength.ClientThread(sslSocket, payload, method).start();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        } catch (Exception ex) {
-        ex.printStackTrace();
-    }
-    }
-    static class ClientThread extends Thread {
-
-            private final SSLSocket sslSocket;
-            private final String payload;
-            RequestMethods method;
-
-            ClientThread(SSLSocket sslSocket, String payload, RequestMethods method) {
-                this.sslSocket = sslSocket;
-                this.payload = payload;
-                this.method = method;
-            }
-
-            public void run() {
                 sslSocket.setEnabledCipherSuites(sslSocket.getSupportedCipherSuites());
                 try {
                     // Start handshake
@@ -80,62 +59,42 @@ public class NonBlockingClientSendContentLessThanContentLength {
                     // Remove the eol to make the client sending partial content
                     //printWriter.print("\r\n");
                     printWriter.flush();
-                    Thread.sleep(650000);
+                    Thread.sleep(200000);
                     printWriter.print("\r\n");
 
                     sslSocket.close();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-
-        private class ResponseReader implements Runnable {
-            private final SSLSocket sslSocket;
-            public ResponseReader(SSLSocket sslSocket) {
-                this.sslSocket = sslSocket;
-            }
-            @Override
-            public void run() {
-                try {
-                    System.out.println("Reading the response ...");
-                    InputStream inputStream = sslSocket.getInputStream();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                    String line;
-                    while((line = bufferedReader.readLine()) != null){
-                        System.out.println("Response : "+line);
-                    }
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-    }
-    private SSLContext createSSLContext() {
-
-        try {
-            KeyStore keyStore = KeyStore.getInstance("JKS");
-            keyStore.load(new FileInputStream(ClientMain.keyStoreLocation), ClientMain.keyStorePassword.toCharArray());
-
-            // Create key manager
-            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
-            keyManagerFactory.init(keyStore, "wso2carbon".toCharArray());
-            KeyManager[] km = keyManagerFactory.getKeyManagers();
-
-            // Create trust manager
-            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
-            trustManagerFactory.init(keyStore);
-            TrustManager[] tm = trustManagerFactory.getTrustManagers();
-
-            // Initialize SSLContext
-            SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
-            sslContext.init(km, tm, null);
-
-            return sslContext;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+    private class ResponseReader implements Runnable {
+        private final SSLSocket sslSocket;
+        public ResponseReader(SSLSocket sslSocket) {
+            this.sslSocket = sslSocket;
+        }
+        @Override
+        public void run() {
+            try {
+                System.out.println("Reading the response ...");
+                InputStream inputStream = sslSocket.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while((line = bufferedReader.readLine()) != null){
+                    System.out.println("Response : "+line);
+                }
 
-        return null;
+            }catch (SocketException e){
+                System.out.println("Socket Exception occurred with the error message : "+ e.getMessage());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
