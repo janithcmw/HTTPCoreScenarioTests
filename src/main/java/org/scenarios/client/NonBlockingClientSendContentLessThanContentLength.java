@@ -6,7 +6,7 @@ import java.io.*;
 import java.net.SocketException;
 
 public class NonBlockingClientSendContentLessThanContentLength extends AbstractSSLClient {
-    private static String Bearer;
+    private final String Bearer;
     private final String host;
     private final int port;
 
