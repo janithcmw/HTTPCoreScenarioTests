@@ -49,11 +49,19 @@ public class NonBlockingClientSendContentLessThanContentLength extends AbstractS
                     printWriter.print("Accept: application/json\r\n");
                     printWriter.print("Connection: keep-alive\r\n");
                     printWriter.print("Authorization: Bearer "+ Bearer +"\r\n");
-                    printWriter.print("Content-Type: application/json\r\n");
                     int contentLength = payload.getBytes().length;
-                    System.out.printf("Actual Content-Length: is: "+ contentLength +"but sending large Content-Length: " + contentLength + 100);
+                    // There is no possible partial client scenario with GET method or zero payload size.
+                    if(contentLength==0 | method == RequestMethods.GET){
+                        System.out.println("Actual Content-Length: is: "+ contentLength +" but "+ method +" method so not sending Content-Length header");
+                        printWriter.print("\r\n");
+                        printWriter.flush();
+                        sslSocket.close();
+                        return;
+                    }
+                    System.out.println("Actual Content-Length is "+ contentLength +" but sending Content-Length " + contentLength + 100);
                     // Sending large Content-Length to make the client sending partial content
                     printWriter.print("Content-Length: "+contentLength + 100+"\r\n");
+                    printWriter.print("Content-Type: application/json\r\n");
                     printWriter.print("\r\n");
                     printWriter.print(payload);
                     // Remove the eol to make the client sending partial content
