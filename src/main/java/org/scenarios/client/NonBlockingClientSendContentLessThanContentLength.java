@@ -25,16 +25,16 @@ public class NonBlockingClientSendContentLessThanContentLength extends AbstractS
                 SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
                 // Create socket
                 SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(this.host, this.port);
-                System.out.println("Client " + this.getClass().getName() + " started");
+                //System.out.println("Client " + this.getClass().getName() + " started");
                 sslSocket.setEnabledCipherSuites(sslSocket.getSupportedCipherSuites());
                 try {
                     // Start handshake
                     sslSocket.startHandshake();
                     // Get session after the connection is established
                     SSLSession sslSession = sslSocket.getSession();
-                    System.out.println("SSLSession :");
-                    System.out.println("\tProtocol : " + sslSession.getProtocol());
-                    System.out.println("\tCipher suite : " + sslSession.getCipherSuite());
+                    //System.out.println("SSLSession :");
+                    //System.out.println("\tProtocol : " + sslSession.getProtocol());
+                    //System.out.println("\tCipher suite : " + sslSession.getCipherSuite());
                     System.out.println("Connection established with the backend");
                     // Start handling application content
                     OutputStream outputStream = sslSocket.getOutputStream();
