@@ -40,7 +40,8 @@ public class SimpleNonBlockingClient {
                     // Start handling application content
                     OutputStream outputStream = sslSocket.getOutputStream();
                     // Create a thread to read the response
-                    Thread responseThread = new Thread(new ResponseReader(sslSocket));
+                    ResponseReader responseReader = new ResponseReader(sslSocket);
+                    Thread responseThread = new Thread(responseReader);
                     responseThread.start();
 
                     PrintStream printWriter = new PrintStream(outputStream);
@@ -66,7 +67,8 @@ public class SimpleNonBlockingClient {
                     printWriter.print(payload);
                     printWriter.print("\r\n");
                     printWriter.flush();
-                    Thread.sleep(1000);
+                    responseReader.waitForResponse();
+                    sslSocket.close();
                     // closing the socket after reading the response
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -78,8 +80,9 @@ public class SimpleNonBlockingClient {
             ex.printStackTrace();
         }
     }
-    private class ResponseReader implements Runnable {
+    private static class ResponseReader implements Runnable {
         private final SSLSocket sslSocket;
+        private volatile boolean responseComplete = false;
         public ResponseReader(SSLSocket sslSocket) {
             this.sslSocket = sslSocket;
         }
@@ -94,8 +97,14 @@ public class SimpleNonBlockingClient {
                     System.out.println("Response : "+line);
                 }
                 inputStream.close();
+                responseComplete = true;
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            }
+        }
+        public void waitForResponse() throws InterruptedException {
+            while (!responseComplete) {
+                Thread.sleep(10);
             }
         }
     }
