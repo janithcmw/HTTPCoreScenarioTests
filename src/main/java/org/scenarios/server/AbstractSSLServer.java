@@ -12,15 +12,19 @@ public class AbstractSSLServer {
     public AbstractSSLServer() {
         System.out.println("initiating "+ this.getClass().getSimpleName() +" server ");
     }
+    public boolean isserverdone = true;
 
     public void run(int port, String content) throws Exception {}
 
-    public void shutdownServer() {
+    public void shutdownServer() throws InterruptedException {
         try {
+            while (!isserverdone){
+                Thread.sleep(10);
+            }
             System.out.println("Shutting down the server");
             ss.close();
-        } catch (IOException ignore) {
-            //
+        } catch (IOException e) {
+            System.out.println("Error while shutting down the server ");
         }
     }
 }
