@@ -6,7 +6,7 @@ import javax.net.ssl.*;
 import java.io.*;
 import java.security.KeyStore;
 
-public class SimpleNonBlockingClient {
+public class SimpleNonBlockingClient extends AbstractSSLClient{
     private static String Bearer;
     private final String host;
     private final int port;
@@ -107,32 +107,5 @@ public class SimpleNonBlockingClient {
                 Thread.sleep(10);
             }
         }
-    }
-    private SSLContext createSSLContext() {
-
-        try {
-            KeyStore keyStore = KeyStore.getInstance("JKS");
-            keyStore.load(new FileInputStream(ClientMain.keyStoreLocation), ClientMain.keyStorePassword.toCharArray());
-
-            // Create key manager
-            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
-            keyManagerFactory.init(keyStore, "wso2carbon".toCharArray());
-            KeyManager[] km = keyManagerFactory.getKeyManagers();
-
-            // Create trust manager
-            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
-            trustManagerFactory.init(keyStore);
-            TrustManager[] tm = trustManagerFactory.getTrustManagers();
-
-            // Initialize SSLContext
-            SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
-            sslContext.init(km, tm, null);
-
-            return sslContext;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return null;
     }
 }
