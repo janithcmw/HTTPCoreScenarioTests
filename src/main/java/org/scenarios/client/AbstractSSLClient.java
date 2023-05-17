@@ -1,5 +1,6 @@
 package org.scenarios.client;
 
+import org.scenarios.client.helpers.RequestMethods;
 import javax.net.ssl.*;
 import java.io.FileInputStream;
 import java.security.KeyStore;
