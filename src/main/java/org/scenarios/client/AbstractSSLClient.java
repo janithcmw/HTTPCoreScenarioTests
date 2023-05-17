@@ -9,7 +9,7 @@ public class AbstractSSLClient {
     public static String keyStoreLocation = "<Client keystore location>";
     public static String keyStorePassword = "<Client keystore password>";
 
-    public void run(){
+    public void run(String payload, RequestMethods method){
 
     }
     protected SSLContext createSSLContext() {
