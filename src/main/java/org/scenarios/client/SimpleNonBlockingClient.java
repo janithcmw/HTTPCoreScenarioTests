@@ -47,7 +47,7 @@ public class SimpleNonBlockingClient extends AbstractSSLClient{
                     PrintStream printWriter = new PrintStream(outputStream);
 
                     // Write header data
-                    printWriter.print(method + " /test/1 HTTP/1.1\r\n ");
+                    printWriter.print(method + " /test/1 HTTP/1.1\r\n");
                     printWriter.print("Accept: application/json\r\n");
                     printWriter.print("Connection: keep-alive\r\n");
                     printWriter.print("Authorization: Bearer " + Bearer + "\r\n");
