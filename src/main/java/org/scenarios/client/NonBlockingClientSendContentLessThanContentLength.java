@@ -9,11 +9,18 @@ public class NonBlockingClientSendContentLessThanContentLength extends AbstractS
     private final String Bearer;
     private final String host;
     private final int port;
+    private String context ="/test/1";
 
     public NonBlockingClientSendContentLessThanContentLength(String host, int port, String Bearer) {
         this.Bearer = Bearer;
         this.host = host;
         this.port = port;
+    }
+    public NonBlockingClientSendContentLessThanContentLength(String host, int port, String context, String Bearer) {
+        this.Bearer = Bearer;
+        this.host = host;
+        this.port = port;
+        this.context = context;
     }
 
     public void run(String payload, RequestMethods method) {
@@ -46,7 +53,7 @@ public class NonBlockingClientSendContentLessThanContentLength extends AbstractS
                     PrintStream printWriter = new PrintStream(outputStream);
 
                     // Write data
-                    printWriter.print(method + " /test/1 HTTP/1.1\r\n ");
+                    printWriter.print(method + " " + context + " HTTP/1.1\r\n");
                     printWriter.print("Accept: application/json\r\n");
                     printWriter.print("Connection: keep-alive\r\n");
                     printWriter.print("Authorization: Bearer "+ Bearer +"\r\n");
@@ -71,7 +78,6 @@ public class NonBlockingClientSendContentLessThanContentLength extends AbstractS
                     // Sleep the thread until socket timeout of the end server
                     Thread.sleep(200000);
                     printWriter.print("\r\n");
-                    responseReader.waitForResponse();
                     sslSocket.close();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -85,7 +91,6 @@ public class NonBlockingClientSendContentLessThanContentLength extends AbstractS
     }
     private static class ResponseReader implements Runnable {
         private final SSLSocket sslSocket;
-        private volatile boolean responseComplete = false;
         public ResponseReader(SSLSocket sslSocket) {
             this.sslSocket = sslSocket;
         }
@@ -105,11 +110,6 @@ public class NonBlockingClientSendContentLessThanContentLength extends AbstractS
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
-            }
-        }
-        public void waitForResponse() throws InterruptedException {
-            while (!responseComplete) {
-                Thread.sleep(10);
             }
         }
     }

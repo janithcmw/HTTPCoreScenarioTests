@@ -10,6 +10,7 @@ public class SimpleNonBlockingClient extends AbstractSSLClient{
     private static String Bearer;
     private final String host;
     private final int port;
+    String context = "/test/1";
 
     public SimpleNonBlockingClient(String host, int port, String Bearer) {
         this.Bearer = Bearer;
@@ -17,6 +18,12 @@ public class SimpleNonBlockingClient extends AbstractSSLClient{
         this.port = port;
     }
 
+    public SimpleNonBlockingClient(String host, int port, String context, String Bearer) {
+        this.Bearer = Bearer;
+        this.host = host;
+        this.port = port;
+        this.context = context;
+    }
     public void run(String payload, RequestMethods method) {
         try {
             // Create ssl socket
@@ -47,7 +54,7 @@ public class SimpleNonBlockingClient extends AbstractSSLClient{
                     PrintStream printWriter = new PrintStream(outputStream);
 
                     // Write header data
-                    printWriter.print(method + " /test/1 HTTP/1.1\r\n");
+                    printWriter.print(method + " " + context + " HTTP/1.1\r\n");
                     printWriter.print("Accept: application/json\r\n");
                     printWriter.print("Connection: keep-alive\r\n");
                     printWriter.print("Authorization: Bearer " + Bearer + "\r\n");
