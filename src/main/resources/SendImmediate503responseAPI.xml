@@ -1,0 +1,29 @@
+<api xmlns="http://ws.apache.org/ns/synapse" name="SendImmediate503responseAPI" context="/SendImmediate503responseAPI">
+   <resource methods="POST GET PUT">
+      <inSequence>
+
+        <!--
+        https://localhost:8253/SendImmediate503responseAPI?id=5&statusCode=503
+        /test?id=10KB&statusCode=503 will return 503 response code with 10KB message payload
+        possible id values
+
+        test?id=10KB  -  10KB response
+        test?id=50KB. - 50KB response
+        id=BufferSize - 16384 bytes
+        test?id=1MB.  - 1MB response
+        test          - 32 bytes response
+        -->
+      <log level="custom">
+          <property name="********" value="org.wso2.demo.SendResponseBackMediator " />
+          <property name="id" expression="$url:id" />
+      </log>
+       <class name="org.wso2.demo.SendResponseBackMediator">
+            <property name="disableChunking" value="true"/>
+        </class>
+         <respond/>
+      </inSequence>
+      <outSequence>
+         <respond/>
+      </outSequence>
+   </resource>
+</api>

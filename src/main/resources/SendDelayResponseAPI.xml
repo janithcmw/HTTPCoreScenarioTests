@@ -1,0 +1,38 @@
+<api xmlns="http://ws.apache.org/ns/synapse" name="SendDelayResponseAPI" context="/SendDelayResponseAPI">
+    <resource methods="POST GET PUT">
+        <inSequence>
+
+            <!--
+                https://localhost:8253/SendDelayResponseAPI?delay=10000
+                SendDelayResponseAPI?delay=10000 will return the response after 10s
+
+                delay=1000 - response delay in 1s
+                delay=10000 - response delay in 10s
+                delay=20000 - response delay in 20s
+            -->
+
+            <log level="custom">
+                <property name="********" value="SendDelayResponseAPI" />
+                <property name="delay" expression="$url:delay" />
+            </log>
+            <property name="delay" expression="$url:delay" />
+            <payloadFactory media-type="json">
+                <format>
+                    {
+                    "message": "Hello World"
+                    }
+                </format>
+                <args/>
+            </payloadFactory>
+            <script language="js">
+                var delay = mc.getProperty('delay');
+                java.lang.Thread.sleep(delay);
+            </script>
+            <property name="DISABLE_CHUNKING" value="true" scope="axis2"/>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <respond/>
+        </outSequence>
+    </resource>
+</api>
