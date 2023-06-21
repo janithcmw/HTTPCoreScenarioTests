@@ -51,6 +51,8 @@ public class PassThroughMessageProcessorPoolTest {
         // deploy the  SendImmediate503responseAPI.xml API in wso2 mi server
         // deploy the  SendDelayResponseAPI.xml API in wso2 mi server
         // copy the class mediator class-mediator-1.0-SNAPSHOT.jar in to <MI>/lib
+        // Create an API in APIM server with the context /test version 1 if not you can modify the context param
+        // Add the backend as https://localhost:8253 ( MI server host and port )
 
         // Test 1.1
         context = "/test/1/SendImmediate503responseAPI?id=50KB";
