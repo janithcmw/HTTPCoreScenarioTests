@@ -1,4 +1,4 @@
-package org.scenarios;
+package org.scenarios.tests;
 
 import org.scenarios.client.AbstractSSLClient;
 import org.scenarios.client.NonBlockingClientSendContentLessThanContentLength;
@@ -7,8 +7,8 @@ import org.scenarios.client.helpers.RequestMethods;
 import org.scenarios.server.*;
 import java.io.*;
 
-public class ScenarioTestMain {
-    public static void main(String[] args) throws Exception {
+public class ScenarioTests {
+    public static void main(String[] args) throws Exception, InterruptedException {
         // Backend server configs
         int backendServerPort=8100;
         String serverHost =  "localhost";
