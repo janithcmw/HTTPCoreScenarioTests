@@ -15,23 +15,25 @@ public class ServerMain {
 
         String content = readFile("<path to 1MB.json >");
 
+        // This class contains main methods to run the back end servers separately
+
         ////////////// Backend server list SSLServerSendImediatexxx /////////////
-//
-//        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate503 backend");
-//        SSLServerSendImediate503 sslServerSendImediate503 = new SSLServerSendImediate503();
-//        sslServerSendImediate503.run(backendServerPort, content);
-//
-//        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate200 backend");
-//        SSLServerSendImediate200 sslServerSendImediate200 = new SSLServerSendImediate200();
-//        sslServerSendImediate200.run(backendServerPort, content);
-//
-//        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate300 backend");
-//        SSLServerSendImediate300 sslServerSendImediate300 = new SSLServerSendImediate300();
-//        sslServerSendImediate300.run(backendServerPort, content);
-//
-//        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate400 backend");
-//        SSLServerSendImediate400 sslServerSendImediate400 = new SSLServerSendImediate400();
-//        sslServerSendImediate400.run(backendServerPort, content);
+
+        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate503 backend");
+        SSLServerSendImediate503 sslServerSendImediate503 = new SSLServerSendImediate503();
+        sslServerSendImediate503.run(backendServerPort, content);
+
+        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate200 backend");
+        SSLServerSendImediate200 sslServerSendImediate200 = new SSLServerSendImediate200();
+        sslServerSendImediate200.run(backendServerPort, content);
+
+        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate300 backend");
+        SSLServerSendImediate300 sslServerSendImediate300 = new SSLServerSendImediate300();
+        sslServerSendImediate300.run(backendServerPort, content);
+
+        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>> Start sslServerSendImediate400 backend");
+        SSLServerSendImediate400 sslServerSendImediate400 = new SSLServerSendImediate400();
+        sslServerSendImediate400.run(backendServerPort, content);
 
         ///////////// Backend server list SSLServerSendImediatexxxWithoutPayload /////////////
 
