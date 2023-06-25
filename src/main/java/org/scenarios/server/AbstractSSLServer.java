@@ -7,7 +7,7 @@ public class AbstractSSLServer {
 
     public static String ServerkeyStoreLocation = "<keystore location>";
     public static String ServerkeyStorePassword = "<keystore password>";
-    protected ServerSocket ss;
+    public ServerSocket ss;
     public static final String CRLF = "\r\n";
     public AbstractSSLServer() {
         System.out.println("initiating "+ this.getClass().getSimpleName() +" server ");
@@ -21,7 +21,7 @@ public class AbstractSSLServer {
             while (!isserverdone){
                 Thread.sleep(10);
             }
-            System.out.println("Shutting down the server");
+            System.out.println("Shutting down the "+ this.getClass().getSimpleName() +" server");
             ss.close();
         } catch (IOException e) {
             System.out.println("Error while shutting down the server ");
