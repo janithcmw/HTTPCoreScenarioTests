@@ -12,7 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class PassThroughMessageProcessorPoolTests {
-    public static void main(String[] args) throws Exception, InterruptedException {
+    public static void main(String[] args) throws Exception {
         // Backend server configs
         int backendServerPort = 8100;
         String serverHost = "localhost";
