@@ -2,6 +2,7 @@ package org.scenarios.tests;
 
 import org.scenarios.client.AbstractSSLClient;
 import org.scenarios.client.NonBlockingClientSendContentLessThanContentLength;
+import org.scenarios.client.SimpleHTTPSClient;
 import org.scenarios.client.SimpleNonBlockingClient;
 import org.scenarios.client.helpers.RequestMethods;
 import org.scenarios.server.AbstractSSLServer;
@@ -10,7 +11,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class PassThroughMessageProcessorPoolTest {
+public class PassThroughMessageProcessorPoolTests {
     public static void main(String[] args) throws Exception, InterruptedException {
         // Backend server configs
         int backendServerPort = 8100;
@@ -63,7 +64,7 @@ public class PassThroughMessageProcessorPoolTest {
         StartConcurrentClient( new NonBlockingClientSendContentLessThanContentLength(serverHost, serverPort, context, Bearer ), Content20KB, RequestMethods.POST);
         Thread.sleep(5000);
         // Sending another simple request after some time, and it will put in to the PT queue until a PT thread is available
-        StartConcurrentClient( new SimpleNonBlockingClient(serverHost, serverPort,context, Bearer), Content20KB, RequestMethods.POST);
+        StartConcurrentClient( new SimpleHTTPSClient(serverHost, serverPort,context, Bearer), Content20KB, RequestMethods.POST);
         // This request get processed when PT thread is available after the source connection timeout of the first two requests.
         Thread.sleep(600000);
 
