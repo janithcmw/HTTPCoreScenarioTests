@@ -8,7 +8,7 @@ import java.security.KeyStore;
 public class AbstractSSLClient {
     public static int port = 8243;
     public static String keyStoreLocation = "<Client keystore location>";
-    public static String keyStorePassword = "<Client keystore password>";
+    public static String keyStorePassword = "wso2carbon";
 
     public void run(String payload, RequestMethods method){
 
@@ -40,4 +40,9 @@ public class AbstractSSLClient {
 
         return null;
     }
+
+    public static void setKeyStoreLocation(String baseLocation) {
+        keyStoreLocation = baseLocation + "/clientKeyStoreLocation/client-truststore.jks";
+    }
+
 }

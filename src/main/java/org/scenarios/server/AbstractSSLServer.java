@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 public class AbstractSSLServer {
 
     public static String ServerkeyStoreLocation = "<keystore location>";
-    public static String ServerkeyStorePassword = "<keystore password>";
+    public static String ServerkeyStorePassword = "wso2carbon";
     public ServerSocket ss;
     public static final String CRLF = "\r\n";
     public AbstractSSLServer() {
@@ -26,5 +26,8 @@ public class AbstractSSLServer {
         } catch (IOException e) {
             System.out.println("Error while shutting down the server ");
         }
+    }
+    public static void setServerkeyStoreLocation(String baseLocation) {
+        ServerkeyStoreLocation = baseLocation + "/serverKeyStoreLocation/wso2carbon.jks";
     }
 }

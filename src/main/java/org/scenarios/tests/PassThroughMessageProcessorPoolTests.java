@@ -22,9 +22,9 @@ public class PassThroughMessageProcessorPoolTests {
         String context ;
 
 
-        String Content1MB = readFile("< absolute path >/1MB.json");
-        String Content2KB = readFile("< absolute path >/2KB.json");
-        String Content20KB = readFile("< absolute path >/20KB.json");
+        String Content1MB = readFile("/Users/janithw/Workspace/WSO2Products/apim/Tickets/BNY-290-test/HTTPCoreScenarioTests/src/main/resources/1MB.json");
+        String Content2KB = readFile("/Users/janithw/Workspace/WSO2Products/apim/Tickets/BNY-290-test/HTTPCoreScenarioTests/src/main/resources/2KB.json");
+        String Content20KB = readFile("/Users/janithw/Workspace/WSO2Products/apim/Tickets/BNY-290-test/HTTPCoreScenarioTests/src/main/resources/20KB.json");
 
         // Test case description
         // Set the below properties in the deployment.toml before running the test case

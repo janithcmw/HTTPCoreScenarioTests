@@ -5,10 +5,21 @@ import org.scenarios.client.NonBlockingClientSendContentLessThanContentLength;
 import org.scenarios.client.SimpleNonBlockingClient;
 import org.scenarios.client.helpers.RequestMethods;
 import org.scenarios.server.*;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
+import static org.scenarios.client.AbstractSSLClient.setKeyStoreLocation;
+import static org.scenarios.server.AbstractSSLServer.setServerkeyStoreLocation;
 
 public class ScenarioTests {
     public static void main(String[] args) throws Exception, InterruptedException {
+        String basePath = pathFinder();
+        setKeyStoreLocation(basePath);
+        setServerkeyStoreLocation(basePath);
         // Backend server configs
         int backendServerPort=8100;
         String serverHost =  "localhost";
@@ -16,8 +27,8 @@ public class ScenarioTests {
         int serverPort = 8243;
         String Bearer = "< Authorization Bearer token for secured API >";
 
-        String Content1MB = readFile("< absolute path >/1MB.json");
-        String Content2KB = readFile("< absolute path >2KB.json");
+        String Content1MB = readFile(basePath + "resources/1MB.json");
+        String Content2KB = readFile(basePath + "resources/2KB.json");
         AbstractSSLServer server;
 
 ////////// Client send the full request content
@@ -180,5 +191,20 @@ public class ScenarioTests {
         // Giving grace period to start the server
         Thread.sleep(500);
         return server;
+    }
+
+    public static String pathFinder() {
+        String path = ScenarioTests.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String decodedPath = null;
+        try {
+//            decodedPath = URLDecoder.decode(path, "UTF-8").replace("/target/classes", "");
+//            decodedPath = URLDecoder.decode(path, "UTF-8");
+//            log.info("the Picking up path is " + path);
+            decodedPath = URLDecoder.decode(path, "UTF-8").replace("HTTPCoreScenarioTests-1.0-SNAPSHOT-jar-with-dependencies.jar", "");
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("An Exception when encoding the file path URI");
+        }
+        System.out.println("Reading configuration file form the path, " + decodedPath);
+        return decodedPath;
     }
 }

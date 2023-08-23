@@ -16,7 +16,7 @@ public class ClientMain {
     public static void main(String[] args) throws IOException {
         System.out.println("Starting the Test Client main!");
         ClientMain main = new ClientMain();
-        String content = readFile(" < Path to 1MB.json >");
+        String content = readFile("/Users/janithw/Workspace/WSO2Products/apim/Tickets/BNY-290-test/HTTPCoreScenarioTests/src/main/resources/1MB.json");
         main.runHTTPClientsWithSingleRequestPayload("localhost", serverPort,content , RequestMethods.POST);
         main.runHTTPClientsWithConcurrentRequestPayload("localhost", serverPort, content , RequestMethods.POST);
     }
