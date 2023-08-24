@@ -18,6 +18,7 @@ import static org.scenarios.server.AbstractSSLServer.setServerkeyStoreLocation;
 public class ScenarioTests {
     public static void main(String[] args) throws Exception, InterruptedException {
         String basePath = pathFinder();
+//        String basePath = "/Users/janithw/Workspace/WSO2Products/apim/Tickets/BNY-290-test/runJAr";
         setKeyStoreLocation(basePath);
         setServerkeyStoreLocation(basePath);
         // Backend server configs
@@ -25,10 +26,10 @@ public class ScenarioTests {
         String serverHost =  "localhost";
         // Client configs
         int serverPort = 8243;
-        String Bearer = "< Authorization Bearer token for secured API >";
+        String Bearer = "eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJhZG1pbiIsImF1dCI6IkFQUExJQ0FUSU9OIiwiYXVkIjoiNm1DeW9GQ29EZ0JWOFpEaDdiNWdWZU93enIwYSIsIm5iZiI6MTY5MjgxMzAyMCwiYXpwIjoiNm1DeW9GQ29EZ0JWOFpEaDdiNWdWZU93enIwYSIsInNjb3BlIjoiZGVmYXVsdCIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0M1wvb2F1dGgyXC90b2tlbiIsImV4cCI6MTY5MjgxNjYyMCwiaWF0IjoxNjkyODEzMDIwLCJqdGkiOiJkMjcyNDY4Zi05Y2FjLTQ4NTItYTA1Yi0yZDEzNDQwMDNkZTcifQ.qGKX4d1Fdt9_yxkteDsR3rtbfkLDL1EEGWXT5iYtqptPNJzy2e--T54Vb8ZUlOIXA6XyjvkRlp3SomJhv5R7A_6hu0wyb_CWgHMkhk-R-D-4l_1nbPtcsHqnYkfgCxG74WsKMK1gCiCdUPNToYxscEhNjPys7hIfNgrKtmd9URbVJzwbg3rcS30VIpvTX8KSBPnZ0USE9cx6vb-9m51m8gnu7Pm8BFrIIczbUn-uTKNNuOsjqa2KJxLBU21X-LJYqlFmm8n_gL4fZjJ-j2LXYlWvdrofLCvN9cRFIaYoibJlTrUsBxYKTSBF--ZmPJfExlwGNdFkvQ782UAQ9xYb1w";
 
-        String Content1MB = readFile(basePath + "resources/1MB.json");
-        String Content2KB = readFile(basePath + "resources/2KB.json");
+        String Content1MB = readFile(basePath + "/resources/1MB.json");
+        String Content2KB = readFile(basePath + "/resources/2KB.json");
         AbstractSSLServer server;
 
 ////////// Client send the full request content
