@@ -100,13 +100,28 @@ public class SimpleNonBlockingClient extends AbstractSSLClient{
                 InputStream inputStream = sslSocket.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
-                while((line = bufferedReader.readLine()) != null){
+                int chunkSize = 1;
+                boolean isChunkHexa = true;
+                while(!sslSocket.isClosed() && (line = bufferedReader.readLine()) != null){
+                    isChunkHexa = true;
                     System.out.println("Response : "+line);
+                    try {
+                        chunkSize =  Integer.parseInt(line, 16);
+                    } catch (Exception e) {
+                        isChunkHexa = false;
+                    }
+                    if(isChunkHexa) {
+                        if(chunkSize == 0) {
+                            bufferedReader.close();
+                            responseComplete = true;
+                        }
+                    }
                 }
                 inputStream.close();
-                responseComplete = true;
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            } catch (Throwable throwable) {
+                throw new RuntimeException(throwable);
             }
         }
         public void waitForResponse() throws InterruptedException {

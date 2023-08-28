@@ -19,6 +19,7 @@
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
+                    <finalName>ScenarioTests</finalName>
                     <archive>
                         <manifest>
                             <mainClass>org.scenarios.tests.ScenarioTests</mainClass>
@@ -40,7 +41,32 @@
                     </execution>
                 </executions>
             </plugin>
+<!--            <plugin>-->
+<!--                <artifactId>maven-assembly-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <finalName>PassThroughMessageProcessorPoolTests</finalName>-->
+<!--                    <archive>-->
+<!--                        <manifest>-->
+<!--                            <mainClass>org.scenarios.tests.PassThroughMessageProcessorPoolTests</mainClass>-->
+<!--                        </manifest>-->
+<!--                    </archive>-->
+<!--                    <descriptorRefs>-->
+<!--                        <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                    </descriptorRefs>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>make-assembly</id>-->
+<!--                        &lt;!&ndash; this is used for inheritance merges &ndash;&gt;-->
+<!--                        <phase>package</phase>-->
+<!--                        &lt;!&ndash; bind to the packaging phase &ndash;&gt;-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
-
 </project>
+
